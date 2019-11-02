@@ -3,21 +3,22 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 @Component({
   selector: 'dynamic-dynamic-table',
   template: `
-  <cdk-virtual-scroll-viewport [itemSize]="20" class="list">
+  <cdk-virtual-scroll-viewport [itemSize]="20">
   <table id="dynamic-table">
+      <thead>
       <tr>
           <th *ngFor="let col of columns">{{col}}</th>
       </tr>
-      <tr *cdkVirtualFor="let row of data">
-          <td *ngFor="let col of columns">{{row[col]}}</td>
-      </tr>
+      </thead>
+      <tbody>
+          <tr *cdkVirtualFor="let row of data">
+              <td *ngFor="let col of columns">{{row[col]}}</td>
+          </tr>
+      </tbody>
   </table>
 </cdk-virtual-scroll-viewport>
   `,
   styles: [`
-  .list {
-    min-height: 500px;
-  }
   #dynamic-table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -46,7 +47,7 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 export class DynamicTableComponent implements OnInit {
   constructor() { }
   
-  @Input() data = [];
+  @Input() data = [{name:"test", age:20},{name:"test1", age:30}];
   @Output() valueChanged = new EventEmitter();
 
   private changed:boolean;
