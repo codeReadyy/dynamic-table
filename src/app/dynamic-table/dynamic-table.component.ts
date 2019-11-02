@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 @Component({
   selector: 'dynamic-dynamic-table',
   template: `
-  <cdk-virtual-scroll-viewport [itemSize]="20">
+  <cdk-virtual-scroll-viewport [itemSize]="20" class="list">
   <table id="dynamic-table">
       <thead>
       <tr>
@@ -19,6 +19,9 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 </cdk-virtual-scroll-viewport>
   `,
   styles: [`
+  .list{
+    height:500px;
+  }
   #dynamic-table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
