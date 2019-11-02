@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 @Component({
   selector: 'dynamic-dynamic-table',
   template: `
-  <cdk-virtual-scroll-viewport [itemSize]="20" style="height:500px">
+  <cdk-virtual-scroll-viewport [itemSize]="20" class="list">
   <table id="dynamic-table">
       <tr>
           <th *ngFor="let col of columns">{{col}}</th>
@@ -15,6 +15,9 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 </cdk-virtual-scroll-viewport>
   `,
   styles: [`
+  .list {
+    min-height: 500px;
+  }
   #dynamic-table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;

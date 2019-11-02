@@ -9,17 +9,16 @@
 </head>
 <body>
     <dynamic-table></dynamic-table>
-    
-    
     <script>
-        
         let dummyValue = [];
         for(let i =0; i<200;i++){
             let temp = {name:"test"+i+1, age: i+1, address:"Address"+i+1};
             dummyValue.push(temp);
         }
+        let table = document.querySelector('dynamic-table');
+        table.data = dummyValue;
+
         
-        table.data = dummyValue
         
     </script>
 </body>
