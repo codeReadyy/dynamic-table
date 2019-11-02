@@ -1,16 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { ScrollingModule } from '@angular/cdk/scrolling'
+import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    DynamicTableComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ScrollingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [DynamicTableComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(injector: Injector){
+    const tableRenderer = createCustomElement(DynamicTableComponent, {injector});
+    customElements.define("dynamic-table", tableRenderer);
+  }
+
+  ngDoBootstrap(){}
+ }

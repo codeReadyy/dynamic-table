@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic table</title>
+    <script src="./table.js"></script>
+</head>
+<body>
+    <dynamic-table></dynamic-table>
+    
+    
+    <script>
+        
+        let dummyValue = [];
+        for(let i =0; i<200;i++){
+            let temp = {name:"test"+i+1, age: i+1, address:"Address"+i+1};
+            dummyValue.push(temp);
+        }
+        
+        table.data = dummyValue
+        
+    </script>
+</body>
+</html>
