@@ -54,7 +54,7 @@ export class DynamicTableComponent implements OnInit {
 
   constructor() { }
   
-  @Output() valueChanged = new EventEmitter();
+  @Output() valueChanged = new EventEmitter<boolean>();
 
   get data(): [] {
     return this._data;

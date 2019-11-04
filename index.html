@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dynamic table</title>
-    
 </head>
 <body>
     <dynamic-table></dynamic-table>
     
     <input type="button" onclick="addData()" value="Update Data">
+    <label id="output"></label>
+
     <script src="./table.js"></script>
     <script>
         function addData(){
@@ -23,7 +24,16 @@
             let table = document.querySelector('dynamic-table');
             table.data = [...dummyValue];     
         }
+        var listenToDataChange = function(){
+            let table = document.querySelector('dynamic-table');
+            table.addEventListener("valueChanged", function(event){
+                document.getElementById("output").innerText = (event.detail ? "Value has been updated-- ": "Records has not been updated-- ") + "Got the response after deep compare";
+            });
+        }
+        
         addData();
+        listenToDataChange();
+        
     </script>
 </body>
 </html>
