@@ -10,21 +10,20 @@
 <body>
     <dynamic-table></dynamic-table>
     
-    <input type="button" onclick="addData()" value="Add/Update Data">
+    <input type="button" onclick="addData()" value="Update Data">
     <script src="./table.js"></script>
     <script>
-        
         function addData(){
-            var rowCount = Math.ceil(Math.random() * 100);
+            var rowCount = Math.ceil(Math.random() * 500);
             let dummyValue = [];
             for(let i =0; i<rowCount;i++){
-                let temp = {name:"test"+i+1, age: i+1, address:"Address"+i+1};
+                let temp = {name:"test"+(i+1), age: i+1, address:"Address"+(i+1)};
                 dummyValue.push(temp);
             }
             let table = document.querySelector('dynamic-table');
             table.data = [...dummyValue];     
         }
-        //addData();
+        addData();
     </script>
 </body>
 </html>

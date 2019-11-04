@@ -50,7 +50,7 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
 export class DynamicTableComponent implements OnInit {
   private _data;
   private _dataChanged:boolean;
-  columns = [];
+  columns: string[];
 
   constructor() { }
   
@@ -73,24 +73,13 @@ export class DynamicTableComponent implements OnInit {
     this._dataChanged = dataChanged;
   }
 
-  // get columns() {
-  //   return this._columns;
-  // }
-
-  // set columns(_columns){
-  //   this._columns = this.columns;
-  // }
-
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    
+  ngOnChanges(changes: SimpleChanges) { 
     this.columns = Object.keys(this._data[0]);
     this.data = this._data;
-    console.log(this.data);
     this.dataChanged = !this.isEqual(changes.data.previousValue, changes.data.currentValue);
-    console.log(this.dataChanged);
     this.valueChanged.emit(this.dataChanged);
   }
 
