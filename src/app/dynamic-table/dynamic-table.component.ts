@@ -48,21 +48,50 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, Simp
   encapsulation: ViewEncapsulation.Native
 })
 export class DynamicTableComponent implements OnInit {
+  private _data;
+  private _dataChanged:boolean;
+  columns = [];
+
   constructor() { }
   
-  @Input() data = [{name:"test", age:20},{name:"test1", age:30}];
   @Output() valueChanged = new EventEmitter();
 
-  private changed:boolean;
-  columns= [];
+  get data(): [] {
+    return this._data;
+  }
+  
+  @Input()
+  set data(data: []) {
+    this._data = [...data];
+  }
+
+  get dataChanged(): boolean {
+    return this._dataChanged;
+  }
+
+  set dataChanged(dataChanged: boolean){
+    this._dataChanged = dataChanged;
+  }
+
+  // get columns() {
+  //   return this._columns;
+  // }
+
+  // set columns(_columns){
+  //   this._columns = this.columns;
+  // }
 
   ngOnInit() {
-    this.columns = Object.keys(this.data[0]);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.changed = !this.isEqual(changes.data.previousValue, changes.data.currentValue);
-    this.valueChanged.emit(this.changed);
+    
+    this.columns = Object.keys(this._data[0]);
+    this.data = this._data;
+    console.log(this.data);
+    this.dataChanged = !this.isEqual(changes.data.previousValue, changes.data.currentValue);
+    console.log(this.dataChanged);
+    this.valueChanged.emit(this.dataChanged);
   }
 
   isEqual(previous, current){ // Checking only for Object and Array not for function type
